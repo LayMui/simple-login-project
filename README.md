@@ -30,3 +30,7 @@ yarn lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# Task 2 Jan 2021 
+Add custom validator for password
+https://css-tricks.com/form-validation-in-under-an-hour-with-vuelidate/
