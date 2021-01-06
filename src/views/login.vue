@@ -10,20 +10,23 @@
         <p class="error" v-if="!$v.input.password.strongPassword">Strong passwords need to have a letter, a number, a special character, and be more than 4 characters long.</p>
 
         <button type="button" @click="login()">Login</button>
-       
+       <base-modal v-if="isShowModal"/>
     </div>
      
 </template>
 
 <script>
 
+import BaseModal from "../components/BaseModal";
 import { required, minLength } from 'vuelidate/lib/validators'
 
     export default {
-     
+     components: {BaseModal},
         name: 'Login',
         data() {
+                
             return {
+                isShowModal: false,
                 input: {
                     username: "",
                     password: ""
@@ -50,7 +53,9 @@ import { required, minLength } from 'vuelidate/lib/validators'
             }
         },
         methods: {
-           
+           showModal() {
+                this.isShowModal= true;
+            },
             login() {
                 if(this.input.username != "" && this.input.password != "") {
                     if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
@@ -58,10 +63,11 @@ import { required, minLength } from 'vuelidate/lib/validators'
                         this.$parent.authenticated = true;
                         this.$router.replace({ name: "secure" });
                     } else {
-                        alert("The username and / or password is incorrect");
+                        this.showModal();
+                       // alert("The username and / or password is incorrect");
                     }
                 } else {
-                    alert("A username and password must be present");
+                    this.showModal();
                 }
             }
         }

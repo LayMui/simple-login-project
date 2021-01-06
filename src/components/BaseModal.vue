@@ -1,5 +1,22 @@
 <template>
-  <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+  <div
+  class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
+>
+  <div class="fixed inset-0 transition-opacity">
+    <div
+      class="absolute inset-0 bg-gray-500 opacity-75"
+    ></div>
+  </div>
+
+  <div
+    class="z-10 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-headline"
+  >
+    <div class="bg-white px-4 pt-4 pb-4 sm:p-5 sm:pb-5">
+      <div class="sm:flex sm:items-start">
+        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
           <div class="flex items-center justify-between mb-4">
             <h3
               class="text-lg leading-6 font-medium text-gray-900"
@@ -36,13 +53,51 @@
   </div>
 </div>
 </template>
-     
+
 <script>
 export default {
+  name: "BaseModal",
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    scrollable: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  created() {
+    document.addEventListener("keyup", this.onClose);
+  },
+  destroyed() {
+    document.removeEventListener("keyup", this.onClose);
+  },
   methods: {
     handleClose() {
       this.$emit("close");
-    }
-}
-}
+    },
+    onClose(event) {
+      // Escape key
+      if (event.keyCode === 27) {
+        this.handleClose();
+      }
+    },
+  },
+};
 </script>
+
+<style scoped>
+.scrollable {
+  height: 300px;
+  overflow-y: scroll;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
