@@ -2,11 +2,11 @@
     <div id="login">
         <h1>Login</h1>
         <input type="text" name="username" v-model.lazy="$v.input.username.$model" placeholder="Username" />
-        <p class="error" v-if="!$v.input.username.$invalid">This field is required</p>
+        <p class="error" v-if="$v.input.username.$invalid">This field is required</p>
         <p class="error" v-if="!$v.input.username.minLength">Field must have at least {{ $v.input.username.$params.minLength.min }} characters.</p>
     
         <input type="password" name="password" v-model.lazy="$v.input.password.$model" placeholder="Password" />
-        <p class="error" v-if="!$v.input.password.$invalid">This field is required</p>
+        <p class="error" v-if="$v.input.password.$invalid">This field is required</p>
         <p class="error" v-if="!$v.input.password.strongPassword">Strong passwords need to have a letter, a number, a special character, and be more than 4 characters long.</p>
 
         <button type="button" @click="login()">Login</button>

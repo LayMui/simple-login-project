@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import Router from './router';
 import Vuelidate from "vuelidate";
+import './index.css'
 
 Vue.use(Vuelidate);
 Vue.config.productionTip = false;
