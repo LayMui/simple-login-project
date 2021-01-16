@@ -34,3 +34,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 # Task 2 Jan 2021 
 Add custom validator for password
 https://css-tricks.com/form-validation-in-under-an-hour-with-vuelidate/
+
+
+# Task 3 16 Jan 2021
+Need add an @close event listener in the Login.vue file
+So, we can change the isShowModal value whenever user click close button.
+
+<base-modal v-if="isShowModal" @close="showModal()"/>

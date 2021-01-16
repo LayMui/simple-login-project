@@ -10,7 +10,8 @@
         <p class="error" v-if="!$v.input.password.strongPassword">Strong passwords need to have a letter, a number, a special character, and be more than 4 characters long.</p>
 
         <button type="button" @click="login()">Login</button>
-       <base-modal v-if="isShowModal"/>
+       <base-modal v-if="isShowModal"  @close="toggleModal"/>
+      
     </div>
      
 </template>
@@ -24,7 +25,7 @@ import { required, minLength } from 'vuelidate/lib/validators'
      components: {BaseModal},
         name: 'Login',
         data() {
-                
+    
             return {
                 isShowModal: false,
                 input: {
@@ -55,6 +56,9 @@ import { required, minLength } from 'vuelidate/lib/validators'
         methods: {
            showModal() {
                 this.isShowModal= true;
+            },
+            toggleModal() {
+                this.isShowModal = !this.isShowModal;
             },
             login() {
                 if(this.input.username != "" && this.input.password != "") {
