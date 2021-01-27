@@ -16,5 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    yarn build
-  displayName: 'yarn build'
+    npm install -g vue-cli-service
+    npm install 
+    npm build
+  displayName: 'npm install and build'
