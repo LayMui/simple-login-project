@@ -19,5 +19,4 @@ steps:
     npm install -g vue-cli-service
     npm install 
     npm build
-    npm run serve
   displayName: 'npm install and build'
